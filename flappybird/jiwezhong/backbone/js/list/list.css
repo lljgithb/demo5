@@ -1,0 +1,84 @@
+.search{
+	padding: 10px;
+	display: -webkit-box;
+}
+.search input{
+	-webkit-box-flex:1;
+	display: block;
+	padding: 10px;
+	border: 1px solid rgba(52,133,251,.7);
+	border-radius: 6px;
+	outline: none;
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+}
+.search span{
+	color: white;
+	background: rgba(52,133,251,.6);
+	padding: 10px 15px;
+	height: 22px;
+	line-height: 22px;
+	font-size: 22px;
+	display: inherit;
+	border-radius: 6px;
+	margin-left: 5px;
+}
+.search .login{
+       background: url(../../img/ctrip_14.png)no-repeat center right 0px;
+    background-size: 20px;
+    background-position: 9px 0px;
+    padding: 18px 4px;
+    /*position: relative;
+    top: 4px;
+    left: 2px;*/
+}
+.types li{
+	float: left;
+	line-height: 30px;
+	text-align: center;
+	width: 25%;
+	margin-bottom: 10px;
+	font-size: 12px;
+}
+.types li img{
+	display: block;
+	width:30px;
+	height: 30px;
+	/*text-align: center;*/
+	position: relative;
+	left: 35px;
+}
+.image-container {
+	display: -webkit-box;
+}
+.image-container div {
+	-webkit-box-flex: 1;
+	/*font-size: 0;*/
+}
+.image-container div img {
+	width: 100%;
+	display: block;
+	margin-bottom: 6px;
+}
+.image-container .left-container {
+	padding: 0 3px 0 6px;
+}
+.image-container .right-container {
+	padding: 0 6px 0 3px;
+}
+/*返回顶部*/
+.go-top{
+	position: fixed;
+	bottom: 80px;
+	right: 30px;
+	background: rgba(0, 0, 0, .5);
+	color: #fff;
+	width: 26px;
+	height: 26px;
+	line-height: 13px;
+	font-size: 13px;
+	padding: 10px;
+	border-radius: 50%;
+	/*display: none;*/
+}

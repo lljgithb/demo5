@@ -1,0 +1,84 @@
+/*详情模块*/
+.detail .banner {
+	position: relative;
+	color: #fff;
+}
+.detail .banner img {
+	width: 100%;
+	display: block;
+} 
+.detail .banner h1 {
+	position: absolute;
+	bottom: 40px;
+	left: 20px;
+}
+.detail .banner p {
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+}
+.detail .price-part {
+	height: 60px;
+	line-height: 60px;
+	background: #fff;
+	padding: 0 10px;
+	font-size: 14px;
+}
+.detail .price-part .price,
+.detail .price-part .price-sign {
+	color: #06c1ae;
+}
+.detail .price-part .price {
+	font-size: 40px;
+}
+.detail .price-part .btn {
+	float: right;
+	padding: 10px 15px;
+	background: #f60;
+	color: #fff;
+	line-height: 14px;
+	margin-top: 13px;
+}
+.detail .sale-part {
+	border-top: 1px solid #ccc;
+	background: #fff;
+	padding: 10px 0;
+}
+.detail .sale-part li {
+	float: left;
+	width: 50%;
+	height: 30px;
+	line-height: 30px;
+	text-indent: 10px;
+	color: yellowgreen;
+	font-size: 14px;
+}
+.detail .sale-part li:last-child {
+	color: #333;
+}
+.detail .module {
+	margin-top: 10px;
+	background: #fff;
+	padding: 10px;
+}
+.detail .module-header {
+	font-size: 30px;
+	line-height: 50px;
+	height: 50px;
+	border-bottom: 1px solid #ccc;
+}
+.detail .module-footer {
+	font-size: 16px;
+	color: skyblue;
+	line-height: 30px;
+	border-top: 1px solid #ccc;
+}
+.detail .module-content {
+	padding: 10px 0;
+	line-height: 26px;
+	font-size: 14px;
+}
+.detail .module-content h3 {
+	color: #f90;
+	line-height: 40px;
+}

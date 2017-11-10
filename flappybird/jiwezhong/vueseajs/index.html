@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- 移动端 -->
+	<meta name="viewport" content="maximum-scale=1, minimum-scale=1, initial-scale=1, user-scalable=no, width=device-width">
+	<title>爱创课堂团购网</title>
+</head>
+<body>
+<!-- 定义容器元素 -->
+<div id="ickt">
+	<!-- 头部视图 -->
+	<header class="header">
+		<div class="go-back"><span class="arrow"><span class="arrow green"></span></span></div>
+		<div class="login">登录</div>
+		<h1>爱创课堂团购网</h1>
+	</header>
+	<div class="search" v-show="$route.path.indexOf('/detail/') < 0"><input 
+		type="text" 
+		v-model="search" 
+		@keyup.enter="gotoSearch"
+		placeholder="请输入搜索的关键字"
+	></div>
+	<!-- 第一步 创建路由容器元素 -->
+	<router-view :search="searchEnterValue" :query="query"></router-view>
+</div>
+<!-- 定义模板 -->
+<template id="tpl_home">
+	<section id="home" class="home">
+		<ul class="type clearfix">
+			<li v-for="item in types">
+				<a :href="'#/list/type/' + item.id">
+					<img :src="'img/icon/' + item.img" alt="">
+					<span>{{item.text}}</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="ad clearfix">
+			<li v-for="(item, index) in ad">
+				<a :href="'#/detail/' + item.id">
+					<h3 :class="'ad-color-' + index">{{item.title}}</h3>
+					<p>{{item.description}}</p>
+					<img :src="'img/ad/' + item.url" alt="">
+				</a>
+			</li>
+		</ul>
+		<div class="items">
+			<h2 class="title">猜你喜欢</h2>
+			<ul>
+				<li v-for="item in list">
+					<a :href="'#/detail/' + item.id">
+						<img :src="'img/list/' + item.img" alt="">
+						<div class="content">
+							<h3>{{item.title}}</h3>
+							<p>
+								<span class="price">{{item.price | price}}</span>
+								<span class="origin-price">{{item.originPrice | originPrice}}</span>
+								<span class="sales">{{item.sales | sales}}</span>
+							</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+</template>
+<template id="tpl_list">
+	<section class="list" id="list">
+		<ul class="order clearfix">
+			<li @click="listOrder(item.id)" v-for="item in orders">
+				<span>{{item.text}}</span>
+				<span class="arrow"></span>
+			</li>
+		</ul>
+		<div class="items">
+			<ul>
+				<li v-for="item in listFilter">
+					<a :href="'#/detail/' + item.id">
+						<img :src="'img/list/' + item.img" alt="">
+						<div class="content">
+							<h3>{{item.title}}</h3>
+							<p>
+								<span class="price">{{item.price | price}}</span>
+								<span class="origin-price">{{item.originPrice | originPrice}}</span>
+								<span class="sales">{{item.sales | sales}}</span>
+							</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="loader-more" @click="showOthers()" v-if="other.length">
+			<span>查看其他{{other.length}}条团购</span>
+			<span class="arrow"><span class="arrow white"></span></span>
+		</div>
+	</section>
+</template>
+<template id="tpl_detail">
+	<section id="detail" class="detail">
+		<div class="banner">
+			<!-- 如果数据返回之前，不去创建图片，不会有失败的请求了 -->
+			<img v-if="data.src" :src="'img/item/' + data.src" alt="">
+			<h1>{{data.title}}</h1>
+			<p>{{data.description}}</p>
+		</div>
+		<div class="price-part">
+			<span class="price">{{data.price}}</span>
+			<span class="price-sign">元</span>
+			<span>{{data.originPrice | originPrice}}</span>
+			<span class="btn">立即购买</span>
+		</div>
+		<ul class="sale-part clearfix">
+			<li>支持自动退货</li>
+			<li>支持实时退货</li>
+			<li>{{data.sales | sales}}</li>
+		</ul>
+		<div class="store-part module">
+			<div class="module-header">店家信息</div>
+			<div class="module-content">
+				<p>{{data.storeName}}</p>
+				<p>{{data.storeAddress}}</p>
+			</div>
+			<div class="module-footer">查看{{data.storeNum}}家分店</div>
+		</div>
+		<div class="buy-part module">
+			<div class="module-header">购买须知</div>
+			<div class="module-content">
+				<ul>
+					<li>
+						<h3>有效日期</h3>
+						<p>{{data.validateTime}}</p>
+					</li>
+					<li>
+						<h3>使用时间</h3>
+						<p>{{data.useTime}}</p>
+					</li>
+					<li>
+						<h3>使用规则</h3>
+						<p v-for="item in data.rules">{{item}}</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+</template>
+<script type="text/javascript" src="static/lib/sea.js"></script>
+<script type="text/javascript" src="static/lib/seajs-css.js"></script>
+<script type="text/javascript" src="static/lib/vue.js"></script>
+<script type="text/javascript" src="static/lib/vue-router.js"></script>
+<script type="text/javascript" src="static/lib/vue-resource.js"></script>
+<script type="text/javascript">
+// 定义配置
+seajs.config({
+	base: '/static'
+})
+// 引入入口文件
+seajs.use(['reset.css', 'components/app'])
+</script>
+</body>
+</html>

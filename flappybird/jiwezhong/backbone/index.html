@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, width=device-width">
+	<title>wxc图片网</title>
+	<link rel="stylesheet" href="css/swiper-3.4.2.min.css">  
+    <script type="text/javascript" src="js/lib/jquery-3.1.1.js"></script>  
+    <script type="text/javascript" src="js/lib/swiper-3.4.2.min.js"></script>  
+	<style>
+
+		.swiper-wrapper{
+			width: 100%;
+			height: 180px;
+		}
+		.swiper-wrapper .swiper-slide img{
+			width: 100%;
+			height: 100%
+		}
+	</style>
+	<title>wxc图片</title>
+</head>
+<body>
+	<!-- 隐藏容器元素，当样式加载完成显示 -->
+	<div id="app">
+		<!-- 定义列表页模块 -->
+		<section class="list" id="list">
+			<header class="header">
+				<!-- 轮播图部分 -->
+			<div class="swiper-container">
+			    <div class="swiper-wrapper">  
+			        <div class="swiper-slide"><img src="img/1.jpg"></div>  
+			        <div class="swiper-slide"><img src="img/9.jpg"></div>  
+			        <div class="swiper-slide"><img src="img/11.jpg"></div>
+			        <div class="swiper-slide"><img src="img/20.jpg"></div>  
+			        <div class="swiper-slide"><img src="img/25.jpg"></div>  
+			    </div>  
+			    <div class="swiper-pagination" style="width: 100px;float: right"></div><!--分页器--> 
+			</div> 
+			</header>
+			<div class="search">
+				<input type="text" placeholder="搜索你想要的图片"><span>搜一搜</span>
+				<a href="login.html">
+					<div class="login">登陆</div>
+				</a>
+				
+
+			</div>
+			<ul class="types clearfix">
+				<li data-type="0"><img src="img/images/1.gif" data-type="0" ><span>帅哥</span></li>
+				<li data-type="1"><img src="img/images/2.gif" data-type="1"><span>美女</span></li>
+				<li data-type="2"><img src="img/images/3.gif" data-type="2"><span>汽车</span></li>
+				<li data-type="3"><img src="img/images/4.gif" data-type="3" ><span>宠物</span></li>
+				<li data-type="4"><img src="img/images/5.gif" data-type="4"><span>动漫</span></li>
+				<li data-type="5"><img src="img/images/6.gif" data-type="5"><span>篮球</span></li>
+				<li data-type="6"><img src="img/images/7.gif" data-type="6"><span>高校</span></li>
+				<li data-type="7"><img src="img/images/8.gif" data-type="7"><span>风景</span></li>
+			</ul>
+			<div class="image-container">
+				<div class="left-container">
+					
+				</div>
+				<div class="right-container">
+					
+				</div>
+			</div>
+			<div class="go-top">返回顶部</div>
+		</section>
+
+		<section class="layer" id="layer"></section>
+
+	</div>
+	<!-- 定义模板 -->
+	<script type="text/template" id="tpl_layer">
+	<div class="layer-container" style="<%=style%>"><img src="<%=src%>" alt=""></div>
+	<div class="header">
+		<div class="go-back">&lt;</div>
+		<h1><%=title%></h1>
+	</div>
+</script>
+<script type="text/javascript" src="js/lib/require.js" data-main="js/app.js"></script>
+</body>
+</html>

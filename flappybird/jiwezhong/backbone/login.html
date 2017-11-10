@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, width=device-width">
+	<title>登录</title>
+	<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+	<div class="tab">
+		<div class="hd" id="hd">
+			<span class="cur">登陆</span>
+			<span>注册</span>
+		</div>
+		<!-- 登陆 -->
+	<div class="bd" id="bd">
+	 <div id="tbdiv" class="cur">  
+			<form action="/login" method="post">
+		<table id="logintb">		  
+			<tr>  
+                <td class="logintd1">用户名/Email：</td>  
+            </tr>  
+            <tr>  
+                <td class="logintd2">
+                	<input type="text" name="username" id="username"><span id="username_tip"></span>
+                </td>  
+            </tr>  
+				  
+				  
+			<tr>  
+                <td class="logintd1">密码：</td>  
+            </tr> 
+            <tr>  
+                <td class="logintd2">
+                	<input type="password" name="password" id="password"><span id="password_tip"></span>
+                </td>  
+            </tr> 
+				   
+			<tr>  
+                <td class="logintd1">验证码：</td>  
+            </tr>  	
+			<tr>  
+                <td class="logintd3">
+                	<input type="text" name="CAPTCHA" id="input">
+				  	<input type="button" id="random_code">
+				  </td>  
+            </tr>
+			<tr>  
+                <td class="logintd5"><input type="checkbox"> Remember  
+                    Me 记住我 <a href="">忘记密码？</a>  
+                </td>  
+            </tr>	
+				  
+			<tr>  
+                <td class="logintd4"><input type="submit" value="登 陆" id="sub">  
+                </td>  
+            </tr>
+					
+				</table> 	
+			</form>
+   		 </div>
+<!-- 注册 -->
+ <div id="tbdiv" > 
+	<form action="/regist" method="post" enctype="multipart/form-data">
+		<table id="logintb">
+		  <tr>  
+                <td class="logintd1">用户名/Email：</td>  
+          </tr>
+          <tr>  
+                <td class="logintd2">  
+                	<input type="text" name="username" id="username"><span id="username_tip"></span>
+                </td>  
+          </tr>
+		  
+		  	<tr>  
+                <td class="logintd1">密码：</td>  
+            </tr>
+            <tr>  
+                <td class="logintd2">
+                	<input type="password" name="password" id="password"><span id="password_tip"></span>
+		 		 </td>  
+            </tr>
+		  	
+		  	<tr>  
+                <td class="logintd1">重复密码：</td>  
+            </tr>
+            <tr>  
+                <td class="logintd2">
+                	<input type="password" id="re_pass"><span id="re_pass_tip"></span>
+                </td>  
+            </tr>
+		 	 <tr>  
+                <td class="logintd1">验证码：</td>  
+            </tr>
+		  	<tr>  
+                <td class="logintd2">
+                	<input type="file" name="uploads" id="uploads" accept="image/jpeg,image/png">
+				</td>  
+            </tr>
+				
+			<tr>  
+                <td class="logintd4">
+                	<input type="submit" id="sub" value="注册">
+			 	</td>  
+            </tr>
+			</table> 
+	</form>
+	</div>
+
+		</div>
+
+	</div>
+	<script type="text/javascript" src="js/lib/jquery-1.7.2.js"></script>
+	<script type="text/javascript">
+	var spans = document.getElementById("hd").getElementsByTagName("span");
+		var divs = document.getElementById("bd").getElementsByTagName("div");
+
+		for(var i = 0 ; i < spans.length ; i ++){
+			// 存储i
+			spans[i].index = i;
+
+			spans[i].onmouseover = function(){
+				// span加cur
+				// 排他
+				for(var j = 0 ; j < spans.length ; j ++){
+					spans[j].className = "";
+				}
+				// 特殊的加cur，对应操作
+				this.className = "cur";
+
+				// div加cur
+				// 排他操作
+				for(var k = 0 ; k < divs.length ; k ++){
+					divs[k].className = "";
+				}
+				// 特殊的加cur对应思想
+				divs[this.index].className = "cur";
+			}
+		}
+
+		
+
+		 $(function(){
+		 	  // 当dom结构加载完成时发生
+		 	  var username_lock = false;
+		 	  var $username = $("#username");
+		 	  var $username_tip = $("#username_tip");
+		 	  // console.log($username)
+		 	  $username.focus(function(){
+		 	  	$username_tip.html("");
+		 	  })
+		 	  $username.blur(function(){
+		 	  	 var regexp = /^[a-zA-Z_]\w{5,7}$/;
+		 	  	 console.log(regexp.test(this.value))
+		 	  	 if(regexp.test(this.value)){
+		 	  	 	 $.ajax({
+		 	  	 	 	url:"/check_name",
+		 	  	 	 	type:"get",
+		 	  	 	 	data:{
+		 	  	 	 		username:this.value
+		 	  	 	 	},
+		 	  	 	 	dataType:"json",
+		 	  	 	 	success:function(data){ 
+		 	  	 	 	  if(data.error===3){
+		 	  	 	 	  	$username_tip.html("用户名可用")
+		 	  	 	 	  }  else{
+		 	  	 	 	  	$username_tip.html("用户名不存在")
+		 	  	 	 	  }
+		 	  	 	 	}
+		 	  	 	 })
+		 	  	 }else{
+		 	  	 	$username_tip.html("6~8位的数字字母下划线,不能以数字开头");
+		 	  	 	username_lock = false;
+		 	  	 	return;
+		 	  	 }
+		 	  })
+		 	  var random_code=document.getElementById("random_code");
+		 	  var click_random=document.getElementById("_click_random");
+		 	  function yanzm(){
+		 	  	var str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		 	  	var str1="";
+		 	  	for (var i = 0; i <4; i++) {
+		 	  		var num =Math.floor(Math.random()*str.length);
+		 	  		str1+=str[num];
+		 	  	}
+		 	  	random_code.value=str1;
+		 	  }
+		 	  window.onload=function(){
+		 	  	yanzm();
+		 	  }
+		 	  random_code.onclick=function(){
+		 	  	yanzm();
+		 	  }
+		 })
+	</script>
+</body>
+</html>

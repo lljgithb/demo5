@@ -1,0 +1,60 @@
+/*首页模块*/
+.home .type {
+	padding: 10px 0;
+	background: #fff;
+}
+.home .type li {
+	float: left;
+	width: 20%;
+	text-align: center;
+} 
+.home .type li a {
+	text-decoration: none;
+	color: #666;
+	font-size: 12px;
+}
+.home .type li img {
+	width: 60%;
+	display: block;
+	margin: 0 auto;
+}
+.home .type li span {
+	margin: 5px 0 10px;
+	display: inline-block;
+}
+.home .ad {
+	background: #fff;
+	margin-top: 10px;
+}
+.home .ad li {
+	float: left;
+	border-right: 1px solid #ccc;
+	width: 33.33333333%;
+	box-sizing: border-box;
+	text-align: center;
+}
+.home .ad li:last-child {
+	border-right: none;
+}
+.home .ad li h3 {
+	font-size: 16px;
+	line-height: 24px;
+	padding-top: 15px;
+}
+.home .ad li p {
+	font-size: 14px;
+	line-height: 26px;
+}
+.home .ad li img {
+	width: 60%;
+	margin: 10px 0 15px;
+}
+.home .ad .ad-color-0 {
+	color: red;
+}
+.home .ad .ad-color-1 {
+	color: green;
+}
+.home .ad .ad-color-2 {
+	color: purple;
+}

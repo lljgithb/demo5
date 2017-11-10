@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=360,user-scalable=no" id="viewport" />
+	<title>flappy bird</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		img{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<img src="images/bird0_0.png" alt="">
+	<img src="images/bird0_1.png" alt="">
+	<img src="images/bird0_2.png" alt="">
+	<img src="images/bg_day.png" alt="">
+	<img src="images/land.png" alt="">
+	<img src="images/medals_0.png" alt="">
+	<img src="images/pipe_up.png" alt="">
+	<img src="images/pipe_down.png" alt="">
+	<img src="images/medals_1.png" alt="">
+	<img src="images/medals_2.png" alt="">
+	<img src="images/medals_3.png" alt="">
+	<!-- <img src="images/" alt="">
+	<img src="images/" alt="">
+	<img src="images/" alt="">
+	<img src="images/" alt="">
+	<img src="images/" alt=""> -->
+	<canvas width="360px" height="512px"></canvas>
+	<script type="text/javascript" src="js/Game.js"></script>
+	<script type="text/javascript" src="js/Pipe.js"></script>
+	<script type="text/javascript" src="js/Background.js"></script>
+	<script type="text/javascript" src="js/Bird.js"></script>
+	<script type="text/javascript">
+	  var a =  0;
+		;(function(){
+			// 得到所有图片
+			var imgs = document.querySelectorAll("img");
+			// 加id
+			for(var i =0,l=imgs.length;i<l;i++){
+				imgs[i].src.replace(/\/(\w+)\./g,function(match,$1){
+					imgs[i].id = $1;
+				});
+			}
+			var canvas = document.querySelector("canvas");
+			var ctx = canvas.getContext("2d");
+			// 定义函数 节省代码
+			var $ = function(id){
+				return document.getElementById(id);
+			}
+			// 使用面向对象的方式组织代码。 
+			// 经过分析整个游戏可以被拆分成1 小鸟 2 背景 3 管子 
+			// 为了方便管理这三个类 就再组织一个游戏类 这个类的实例处于“中介者”的位置
+			// 小鸟与管子有碰撞关系。不是直接检测小鸟与管子之间的关系而是通过中介者来进行检测
+			// 所有中介者的属性。都是各个类的实例。
+			// 中介者名字叫Game
+			var bg_day = new Background($("bg_day"),1);
+			var land = new Background($("land"),2);
+			var bird = new Bird([$("bird0_0"),$("bird0_1"),$("bird0_2")]);
+			var medals_arr = [$("medals_0"),$("medals_1"),$("medals_2"),$("medals_3")];
+			var pipeArr = [new Pipe($("pipe_down"),$("pipe_up"),2,medals_arr)];
+			var g = new Game(ctx,bg_day,land,pipeArr,Pipe,bird);
+			a = g;
+		})();
+	</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+/*商品样式*/
+.items {
+	background: #fff;
+}
+.items .title {
+	height: 40px;
+	line-height: 40px;
+	margin: 10px;
+	margin-bottom: 0;
+	font-size: 20px;
+	font-weight: normal;
+	border-bottom: 1px solid #ccc;
+} 
+.items ul {
+	padding: 0 10px;
+}
+.items ul li {
+	border-bottom: 1px solid #ccc;
+	padding: 10px 0;
+}
+.items ul li img {
+	width: 100px;
+	float: left;
+	height: 60.5px;
+}
+.items ul li .content {
+	margin-left: 110px;
+	min-height: 61px;
+}
+.items ul li h3 {
+	font-size: 14px;
+	height: 43px;
+}
+.items ul li p {
+	font-size: 12px;
+}
+.items ul li .price {
+	color: #06c1ae;
+}
+.items ul li .sales {
+	float: right;
+}
